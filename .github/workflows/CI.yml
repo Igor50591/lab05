@@ -20,4 +20,13 @@ jobs:
       run: sudo apt update && sudo apt install -y cmake && sudo apt install -y git && sudo apt install -y libgtest-dev
 
     - name: Testing
-      run: mkdir build && cd build  && cmake .. && make && ./tests
+      run: mkdir build && cd build && mkdir coverage && touch coverage/lcov.info  && cmake .. && make && ./tests
+
+    - name: Coverage
+      run: |
+          lcov --capture --directory . -o ./lcov.info
+          lcov --remove lcov.info '*/gtest/*' '/usr/*' -o lcov.info
+    - name: Coveralls GitHub Action
+      uses: coverallsapp/github-action@v2.0.0
+      with:
+        path-to-lcov: "./lcov.info"

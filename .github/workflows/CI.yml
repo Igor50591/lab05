@@ -20,4 +20,4 @@ jobs:
       run: sudo apt update && sudo apt install -y cmake && sudo apt install -y git && sudo apt install -y libgtest-dev
 
     - name: Testing
-      run: mkdir ../build && cd ../build  && cmake .. && make && ./tests
+      run: mkdir build && cd build  && cmake .. && make && ./tests

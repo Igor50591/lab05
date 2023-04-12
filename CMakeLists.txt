@@ -19,10 +19,12 @@ target_include_directories(lab05lib PUBLIC
 )
 
 if(BUILD_TESTS)
-    add_executable(tests
-        ${CMAKE_CURRENT_SOURCE_DIR}/tests/accountTest.cpp)
-    target_link_libraries(tests lab05lib GTest::gtest_main)
-    enable_testing()
-    add_test(NAME unit_tests COMMAND tests)
+add_executable(tests
+	${CMAKE_CURRENT_SOURCE_DIR}/tests/accountTest.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/tests/transactionTest.cpp)
+target_link_libraries(tests lab05lib GTest::gtest_main)
+
+enable_testing()
+add_test(NAME unit_tests COMMAND tests)
 endif()
 
